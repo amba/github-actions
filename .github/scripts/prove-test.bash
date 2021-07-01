@@ -1,4 +1,4 @@
-
+printenv 
 # Prevent "Please tell me who you are" errors for certain DZIL configs
 git config --global user.name 'github-actions'
 
