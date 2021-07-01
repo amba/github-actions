@@ -6,6 +6,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
+      - run: pwd
       - name: prove-test
         run: ./.github/scripts/prove-test.bash
         shell: bash
