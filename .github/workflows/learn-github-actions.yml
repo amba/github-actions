@@ -6,8 +6,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
-      - run: pwd
-      - run: ls
-      - run: cd /tmp && pwd
+      - name: prove-test
+        run: ./.github/scripts/prove-test.bash
+        shell: bash
+        env:
+          gp_version: 5.2.4
+          with_pdl_graphics_gnuplot: 1
       
       
