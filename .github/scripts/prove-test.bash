@@ -25,3 +25,11 @@ gnuplot --version
 export GNUPLOT_BINARY=$HOME/local/bin/gnuplot
 
 
+#
+# Install Dist::Zilla
+#
+
+cpanm -v Dist::Zilla
+
+# Install DZIL plugins etc if needed
+
