@@ -26,10 +26,36 @@ export GNUPLOT_BINARY=$HOME/local/bin/gnuplot
 
 
 #
-# Install Dist::Zilla
+# Install Dist::Zilla and Lab::Measurement dependencies
 #
 
 cpanm -v Dist::Zilla
 
 # Install DZIL plugins etc if needed
+cd $GITHUB_WORKSPACE
+ls -la
+
+dzil authordeps --missing | grep -vP '[^\w:]' | xargs cpanm -v
+dzil listdeps --missing --cpanm | grep -vP '[^\w:~"\.]' | xargs cpanm  -v
+if [ $with_pdl_graphics_gnuplot -eq "1" ]; then cpanm --verbose -f PDL::Graphics::Gnuplot; fi
+cpanm -v Test::Perl::Critic
+
+
+#
+# Run tests
+#
+
+
+
+ # "normal" tests
+prove --verbose -l -s -r t
+
+# Perl::Critic tests
+prove --verbose -l -r xt/critic/
+
+# Pod manual test
+prove --verbose xt/pod-manual-coverage.t
+
+
+
 
